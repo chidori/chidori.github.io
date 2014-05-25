@@ -1,0 +1,14 @@
+# Site settings
+title: chidori.dev
+email: ask@chidori.ru
+description: ""
+baseurl: ""
+fullname: "Anton Kagakin"
+username: "chidori"
+proff: "developer"
+url: "http://chidori.ru"
+
+# Build settings
+markdown: rdiscount
+highlighter: pygment
+permalink: pretty
