@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    @font-face {
+      font-family: "MP Manga Font Bold";
+      src: url("1083-font.ttf");
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    body {
+      font-family: "MP Manga Font Bold";
+      font-size: 32px;
+    }
+
+    .container {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .frame {
+      border: 2px solid black;
+      border-radius: 10px;
+      max-width: 720px;
+      height: calc(100vh - 20px);
+      align-self: center;
+      margin: 10px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+    }
+
+    #container {
+      position: relative;
+      text-align: center;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    #inv {
+      text-align: center;
+    }
+
+    @keyframes changesize {
+      from {
+        transform: scale(1.05);
+      }
+
+      to {
+        transform: scale(1.1);
+      }
+    }
+
+    .cloud {
+      animation-duration: 0.7s;
+      animation-name: changesize;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    .cloud {
+      width: 70%;
+    }
+
+    .text-cloud {
+      margin: 0 auto;
+    }
+
+    .text {
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+    }
+
+    .video {
+      text-align: center;
+      height: 50vh;
+    }
+
+    @media (max-width: 720px) {
+      .cloud {
+        width: 90%;
+      }
+
+      .text {
+        font-size: 3vw;
+      }
+
+      .video {
+        height: 55vh;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="frame">
+      <div id="container">
+        <img class="cloud" src="1.png" />
+        <div class="text">
+          <p><span id="dear">Дорогие</span>, <span id="g1">Фокс</span>&nbsp;<span id="g2">и Галя</span>!</p>
+          <p>приглашаем <span id="you">вас</span> на вечеринку</p>
+          <p>"не свадьба"</p>
+          <p>9 сентября 2023, 16:00</p>
+          <p style="text-decoration: underline; margin-top: 4px">
+            <a href="https://2gis.ru/geo/104.57601084107191,52.091077562279423" style="color: black">докудово</a>
+          </p>
+        </div>
+      </div>
+      <div class="video">
+        <video id="video" autoplay loop muted style="height: 100%" playsinline>
+          <source id='source' type="video/mp4" src="1.mov" />
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const guests = {
+      'fox': ["Фокс", "Галя"],
+      'nymphly': ["Саша", "Аня"],
+      'lion': ["Лев", "Маша"],
+      'roach': ["Артем", "Влада"],
+      'alla': ["Алла", "Виктор"],
+      'hart': ["Юля"],
+      'cio': ["Маша"],
+      'ship': ["Юля", "Сергей"],
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const g = urlParams.get('g');
+
+    const inv = document.querySelector('.container');
+    inv.style.display = 'none';
+    const dear = document.getElementById('dear');
+    const g1 = document.getElementById('g1');
+    const g2 = document.getElementById('g2');
+    const you = document.getElementById('you');
+
+    if (g) {
+      const [guest1, guest2] = guests[g];
+      if (guests[g].length === 1) {
+        dear.innerText = 'Дорогая';
+        g1.innerText = guest1;
+        g2.innerText = '';
+        you.innerText = 'тебя'
+      } else {
+        dear.innerText = 'Дорогие';
+        g1.innerText = guest1;
+        g2.innerText = `и ${guest2}`;
+        you.innerText = 'вас'
+      }
+      inv.style.display = 'flex';
+    }
+  </script>
+</body>
+
+</html>
